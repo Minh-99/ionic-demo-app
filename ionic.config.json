@@ -1,0 +1,7 @@
+{
+  "name": "deploy-ionic-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

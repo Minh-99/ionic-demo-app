@@ -1,0 +1,75 @@
+<!-- UI login -->
+
+<ion-header> </ion-header>
+
+<ion-content>
+  <div class="background-pic">
+    <div class="background-filter">
+      <div class="shape"><img src="../../assets/shape.svg" /></div>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title> Welcome! </ion-card-title>
+          <ion-card-subtitle>
+            Time to Shop, Let's <a href="#">Sign in</a>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <form
+            [formGroup]="validationFormUser"
+            (ngSubmit)="LoginUser(validationFormUser.value)"
+          >
+            <ion-item class="m-0" style="--highlight-background: auto">
+              <ion-input
+                type="text"
+                formControlName="email"
+                placeholder="Email Adress"
+              ></ion-input>
+            </ion-item>
+            <div>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.email"
+              >
+                <ion-text
+                  *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)"
+                  color="{{validation.security}}"
+                >
+                  <h5>{{validation.message}}</h5>
+                </ion-text>
+              </ng-container>
+            </div>
+            <ion-item class="m-0" style="--highlight-background: auto">
+              <ion-input
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+              ></ion-input>
+            </ion-item>
+            <div>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.password"
+              >
+                <ion-text
+                  *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)"
+                  color="{{validation.security}}"
+                >
+                  <h5>{{validation.message}}</h5>
+                </ion-text>
+              </ng-container>
+            </div>
+            <a href="#">Forgot Password</a>
+            <div class="bottom-section">
+              <ion-button type="submit" [disabled]="!validationFormUser.valid"
+                >Sign In</ion-button
+              >
+              <span>
+                Don't have an account ?
+                <a href="http://localhost:8100/signup"> Sign Up</a></span
+              >
+            </div>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
